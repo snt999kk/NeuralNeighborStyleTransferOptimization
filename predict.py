@@ -6,7 +6,7 @@ import numpy as np
 from cog import BasePredictor, Path, Input
 
 # Internal Project Imports
-from pretrained.vgg import Vgg16Pretrained
+from pretrained.resnet import Resnet50Pretrained
 from utils import misc as misc
 from utils.misc import load_path_for_pytorch
 from utils.stylize import produce_stylization
@@ -15,7 +15,7 @@ from utils.stylize import produce_stylization
 class Predictor(BasePredictor):
     def setup(self):
         # Define feature extractor
-        cnn = misc.to_device(Vgg16Pretrained())
+        cnn = misc.to_device(Resnet50Pretrained())
         self.phi = lambda x, y, z: cnn.forward(x, inds=y, concat=z)
 
     def predict(
